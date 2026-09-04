@@ -8,13 +8,9 @@
     <!-- ========================================== -->
     <!-- SECURITY META TAGS (PROTEKSI KEAMANAN WEBSITE) -->
     <!-- ========================================== -->
-    <!-- Mencegah website dimasukkan ke dalam iframe orang lain (Anti-Clickjacking) -->
     <meta http-equiv="X-Frame-Options" content="DENY">
-    <!-- Mencegah MIME-sniffing exploit -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <!-- Mengatur kebijakan referrer agar domain/data sensitif tidak bocor -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <!-- Content Security Policy (CSP): Membatasi sumber resource resmi saja -->
     <meta http-equiv="Content-Security-Policy" content="
         default-src 'self';
         style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
@@ -31,14 +27,21 @@
     
     <link rel="stylesheet" href="style.css">
 </head>
-<body oncontextmenu="return false;"> <!-- Disables Right Click di seluruh halaman -->
+<body oncontextmenu="return false;">
 
-    <!-- NAVBAR / HEADER -->
+    <!-- NAVBAR / HEADER UTAMA -->
     <header class="navbar">
-        <div class="logo">
-            <a href="#" class="brand-name">PORTOFOLIO MOCHAMMAD ZIDNEY MAS'ARIELLAH</a>
+        <a href="#" class="brand-name">Portofolio Mochammad Zidney Mas'ariellah</a>
+
+        <!-- Tombol Menu Garis 3 (Mobile) -->
+        <div class="menu-toggle" id="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-        <nav class="nav-links">
+
+        <!-- Menu Navigasi -->
+        <nav class="nav-links" id="nav-links">
             <a href="#about">About</a>
             <a href="#event-doc">Event</a>
             <a href="#other-works">Works</a>
@@ -77,7 +80,10 @@
         <div class="about-container">
             <div class="about-content">
                 <h2 class="about-title">TENTANG SAYA</h2>
-                <h3 class="about-subtitle">HALO! MOCHAMMAD ZIDNEY MAS'ARIELLAH</h3>
+                <h3 class="about-subtitle">
+                    HALO!<br>
+                    <span>MOCHAMMAD ZIDNEY MAS'ARIELLAH</span>
+                </h3>
                 <p class="about-text">
                     Saya adalah mahasiswa Teknik Informatika yang memiliki minat dan pengalaman dalam bidang desain grafis, editing, dan multimedia. Terbiasa mengerjakan berbagai proyek desain dan editing secara freelance dengan mengutamakan kreativitas, ketelitian, dan kualitas hasil kerja. Memiliki kemampuan komunikasi yang baik, mampu bekerja sama dalam tim, serta bertanggung jawab dalam menyelesaikan tugas dan proyek sesuai target.
                 </p>
@@ -311,28 +317,38 @@
         </div>
     </section>
 
-    <!-- SCRIPT PROTEKSI KONTEN & ASET (Cegah Klik Kanan, F12 / Inspect Element) -->
+    <!-- SCRIPT TAMPILAN MOBILE & PROTEKSI WEBPAGE -->
     <script>
-        // Mencegah Klik Kanan
+        // LOGIKA MENU NAVIGASI MOBILE (POP-UP TOGGLE)
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.getElementById('nav-links');
+
+            if (menuToggle && navLinks) {
+                // Klik ikon garis 3 untuk buka / tutup menu
+                menuToggle.addEventListener('click', function() {
+                    navLinks.classList.toggle('active');
+                });
+
+                // Otomatis menutup menu setelah link diklik
+                const links = navLinks.querySelectorAll('a');
+                links.forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        navLinks.classList.remove('active');
+                    });
+                });
+            }
+        });
+
+        // PROTEKSI KONTEN (Mencegah Klik Kanan & Shortcut Inspect Element)
         document.addEventListener('contextmenu', event => event.preventDefault());
 
-        // Mencegah Tombol Pintas DevTools / Inspect (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U)
         document.onkeydown = function (e) {
-            if (e.keyCode == 123) { // F12
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { // Ctrl+Shift+I
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { // Ctrl+Shift+C
-                return false;
-            }
-            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { // Ctrl+Shift+J
-                return false;
-            }
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Ctrl+U (View Source)
-                return false;
-            }
+            if (e.keyCode == 123) return false; // F12
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false; // Ctrl+Shift+I
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false; // Ctrl+Shift+C
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false; // Ctrl+Shift+J
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false; // Ctrl+U
         };
     </script>
 </body>
