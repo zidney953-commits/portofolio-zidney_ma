@@ -1122,7 +1122,7 @@ img {
         width: 100%;
     }
 
-    /* --- HAMBURGER MENU & MOBILENAV --- */
+    /* --- HAMBURGER MENU & MOBILENAV POP-UP KANAN --- */
     .menu-toggle {
         display: flex;
     }
@@ -1130,31 +1130,43 @@ img {
     .nav-links {
         display: none;
         position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background: rgba(10, 10, 10, 0.95);
-        -webkit-backdrop-filter: blur(15px);
-        backdrop-filter: blur(15px);
+        top: calc(100% + 8px); /* Muncul tepat di bawah navbar */
+        right: 20px;           /* Posisikan di pojok kanan bawah tombol garis 3 */
+        left: auto;
+        width: 160px;          /* Lebar kotak pop-up */
+        background: rgba(32, 32, 35, 0.95); /* Warna gelap transparan */
+        -webkit-backdrop-filter: blur(12px);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 18px;    /* Sudut melengkung halus */
         flex-direction: column;
-        padding: 25px 0;
-        align-items: center;
-        gap: 20px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+        padding: 22px 15px;
+        align-items: center;    /* Teks berada di tengah kotak */
+        gap: 16px;              /* Jarak antar menu */
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+        z-index: 10001;
     }
 
     .nav-links.active {
         display: flex;
     }
 
+    .nav-links a {
+        font-size: 0.95rem;
+        font-weight: 400;
+        color: #ffffff;
+        text-align: center;
+        width: 100%;
+    }
+
     .navbar {
         padding: 15px 25px;
+        position: fixed;
     }
 
     .brand-name {
         font-size: 0.85rem;
-        max-width: 75%;
+        max-width: 70%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
