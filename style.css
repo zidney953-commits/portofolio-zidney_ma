@@ -20,6 +20,17 @@ body {
     overflow-x: hidden;
 }
 
+/* --- PROTEKSI GAMBAR (ANTI DRAG & SELECT) --- */
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
 /* --- NAVBAR FIXED PERMANEN --- */
 .navbar {
     position: fixed;
@@ -39,17 +50,17 @@ body {
 
 .brand-name {
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(0.85rem, 1.1vw, 1rem); /* Ukuran sama persis dengan menu kanan */
-    font-weight: 400;                       /* Ketebalan font sama dengan menu kanan */
-    color: #ffffff !important;              /* Memastikan warna teks tetap putih bersih */
-    text-decoration: none !important;       /* Menghilangkan garis bawah */
+    font-size: clamp(0.85rem, 1.1vw, 1rem);
+    font-weight: 400;
+    color: #ffffff !important;
+    text-decoration: none !important;
     letter-spacing: 0.5px;
     transition: opacity 0.3s ease;
 }
 
 .brand-name:hover {
     color: #ffffff;
-    opacity: 0.8;                           /* Efek halus saat kursor diarahkan ke teks */
+    opacity: 0.8;
 }
 
 .nav-links {
@@ -69,6 +80,26 @@ body {
 .nav-links a:hover {
     opacity: 0.7;
     color: #BBE0FF;
+}
+
+/* --- TOMBOL HAMBURGER MENU (DESKTOP HIDDEN) --- */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 3px;
+    transition: all 0.3s ease;
 }
 
 /* --- HERO CONTAINER --- */
@@ -225,6 +256,10 @@ body {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 25px;
+}
+
+.about-subtitle span {
+    display: inline;
 }
 
 .about-text {
@@ -473,7 +508,7 @@ body {
     background: rgba(187, 224, 255, 0.08);
 }
 
-/* --- SECTION EVENT DOCUMENTATION PREVIEW (5.jpg) --- */
+/* --- SECTION EVENT DOCUMENTATION PREVIEW --- */
 .event-doc-section {
     background-color: #000000;
     min-height: 100vh;
@@ -552,7 +587,6 @@ body {
     letter-spacing: -2px;
 }
 
-/* Penataan Gambar Preview (Berjejer Bertingkat) */
 .event-doc-preview {
     flex: 1.2;
     display: flex;
@@ -576,19 +610,17 @@ body {
     object-fit: contain;
 }
 
-/* Foto Kiri (IMG_0249.JPG) - DIPOSISIKAN AGAK KE ATAS */
 .preview-img-box.img-left {
     width: clamp(210px, 19vw, 270px);
     margin-top: -40px;
 }
 
-/* Foto Kanan (DSC01050.JPG) - DIPOSISIKAN AGAK KE BAWAH */
 .preview-img-box.img-right {
     width: clamp(210px, 19vw, 270px);
     margin-top: 50px;
 }
 
-/* --- PAGE GALLERY (MASONRY LAYOUT - TANPA SPASI BOLONG) --- */
+/* --- PAGE GALLERY (MASONRY LAYOUT) --- */
 .gallery-page-body {
     background-color: #000000;
     color: #ffffff;
@@ -627,7 +659,6 @@ body {
     text-transform: uppercase;
 }
 
-/* Masonry System: Menghilangkan Celah Kosong / Bolong */
 .gallery-grid {
     column-count: 3;
     column-gap: 16px;
@@ -676,7 +707,7 @@ body {
     transform: translateX(-10px);
 }
 
-/* --- REVISI MASONRY LAYOUT MY OTHER WORKS (TANPA SPASI BOLONG) --- */
+/* --- REVISI MASONRY LAYOUT MY OTHER WORKS --- */
 .works-masonry-grid {
     column-count: 3;
     column-gap: 16px;
@@ -703,7 +734,7 @@ body {
     transform: scale(1.02);
 }
 
-/* --- SECTION BUKTI PEKERJAAN (11.jpg & proof.html) --- */
+/* --- SECTION BUKTI PEKERJAAN --- */
 .proof-title {
     font-size: clamp(2.2rem, 4.2vw, 4.2rem) !important;
     line-height: 1 !important;
@@ -750,7 +781,7 @@ body {
     transform: scale(1.02);
 }
 
-/* --- SECTION PROYEK DAN KARYA (UPDATED PREVIEW & LAYOUT) --- */
+/* --- SECTION PROYEK DAN KARYA --- */
 .subtitle-tag {
     font-size: clamp(1.4rem, 2.8vw, 2.8rem);
     color: #ffffff;
@@ -768,7 +799,6 @@ body {
     max-width: 620px;
 }
 
-/* Proporsi Tata Letak Section Proyek */
 .project-container {
     gap: 30px !important;
 }
@@ -783,7 +813,6 @@ body {
     align-items: center;
 }
 
-/* Ukuran Foto Preview Diperbesar */
 .project-img-single {
     width: 100% !important;
     max-width: 680px !important;
@@ -820,7 +849,6 @@ body {
     padding-left: 12px;
 }
 
-/* Masonry Grid Proyek (Tanpa Celah & Uncropped) */
 .projects-masonry-grid {
     column-count: 3;
     column-gap: 16px;
@@ -847,50 +875,6 @@ body {
     transform: scale(1.02);
 }
 
-/* --- MEDIA QUERIES / RESPONSIVE LAYOUT --- */
-@media (max-width: 900px) {
-    .event-doc-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .event-doc-preview {
-        width: 100%;
-        justify-content: flex-start;
-        margin-top: 40px;
-    }
-
-    .project-container {
-        flex-direction: column;
-    }
-
-    .project-content,
-    .project-preview {
-        flex: 1 !important;
-        width: 100%;
-    }
-
-    .project-img-single {
-        max-width: 100% !important;
-    }
-
-    .gallery-grid,
-    .works-masonry-grid,
-    .proof-masonry-grid,
-    .projects-masonry-grid {
-        column-count: 2;
-    }
-}
-
-@media (max-width: 550px) {
-    .gallery-grid,
-    .works-masonry-grid,
-    .proof-masonry-grid,
-    .projects-masonry-grid {
-        column-count: 1;
-    }
-}
-
 /* --- SECTION CONTACT / TERIMA KASIH --- */
 .contact-section {
     background-color: #000000;
@@ -904,7 +888,6 @@ body {
     scroll-snap-align: start;
 }
 
-/* Container Frame Berukuran Skala Proporsional 16:9 */
 .contact-frame {
     position: relative;
     width: 100%;
@@ -918,7 +901,6 @@ body {
     box-sizing: border-box;
 }
 
-/* Lingkaran Garis Gelap Background */
 .bg-circle {
     position: absolute;
     width: clamp(450px, 50vw, 720px);
@@ -932,7 +914,6 @@ body {
     pointer-events: none;
 }
 
-/* Sisi Kiri (Teks & Card) */
 .contact-left {
     position: relative;
     z-index: 2;
@@ -966,10 +947,9 @@ body {
     margin-bottom: auto;
 }
 
-/* Card Merah Kontak (KEEMPAT SUDUT DIBUAT TUMPUL MELENGKUNG) */
 .contact-card {
     background-color: #7A2828;
-    border-radius: 40px; /* Keempat sudut (kiri-atas, kanan-atas, kanan-bawah, kiri-bawah) melengkung mulus */
+    border-radius: 40px;
     padding: 30px 40px 32px 35px;
     width: 100%;
     max-width: 680px;
@@ -994,8 +974,8 @@ body {
     width: clamp(22px, 1.8vw, 28px);
     height: clamp(22px, 1.8vw, 28px);
     object-fit: contain;
-    border-radius: 6px; /* <-- MENGUBAH SUDUT LOGO MENJADI TUMPUL */
-    overflow: hidden;   /* <-- MEMASTIKAN ISI GAMBAR TERPOTONG SESUAI LENGKUNGAN */
+    border-radius: 6px;
+    overflow: hidden;
 }
 
 .contact-link-text {
@@ -1034,7 +1014,6 @@ body {
     color: #BBE0FF;
 }
 
-/* Sisi Kanan (Foto Zidney Menempel di Bawah Kanan) */
 .contact-right {
     position: relative;
     z-index: 1;
@@ -1054,8 +1033,42 @@ body {
     transform: translateX(300px) translateY(330px);
 }
 
-/* Penyesuaian Responsif Layar Kecil / Tablet / HP */
+/* ============================================================
+   RESPONSIVE MEDIA QUERIES (TABLET & GENERAL)
+   ============================================================ */
 @media (max-width: 900px) {
+    .event-doc-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .event-doc-preview {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 40px;
+    }
+
+    .project-container {
+        flex-direction: column;
+    }
+
+    .project-content,
+    .project-preview {
+        flex: 1 !important;
+        width: 100%;
+    }
+
+    .project-img-single {
+        max-width: 100% !important;
+    }
+
+    .gallery-grid,
+    .works-masonry-grid,
+    .proof-masonry-grid,
+    .projects-masonry-grid {
+        column-count: 2;
+    }
+
     .contact-frame {
         padding: 80px 24px 0 24px;
         flex-direction: column;
@@ -1069,7 +1082,7 @@ body {
     }
 
     .contact-card {
-        border-radius: 55px; /* Keempat sudut tumpul di tablet */
+        border-radius: 55px;
         padding: 24px;
     }
 
@@ -1091,16 +1104,236 @@ body {
     }
 }
 
+@media (max-width: 550px) {
+    .gallery-grid,
+    .works-masonry-grid,
+    .proof-masonry-grid,
+    .projects-masonry-grid {
+        column-count: 1;
+    }
+}
+
 /* ============================================================
-   PENGATURAN TAMPILAN KHUSUS HP / MOBILE (RESPONSIVE FIX)
+   PENGATURAN TAMPILAN KHUSUS HP / MOBILE (MAX-WIDTH: 768px)
    ============================================================ */
 @media (max-width: 768px) {
-    /* 1. Mencegah layar bisa digeser ke kanan-kiri (Overflow) */
     html, body {
         overflow-x: hidden;
         width: 100%;
     }
 
+    /* --- HAMBURGER MENU & MOBILENAV --- */
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.95);
+        -webkit-backdrop-filter: blur(15px);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        padding: 25px 0;
+        align-items: center;
+        gap: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .navbar {
+        padding: 15px 25px;
+    }
+
+    .brand-name {
+        font-size: 0.85rem;
+        max-width: 75%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* --- 1. TENTANG SAYA (HP) --- */
+    .about-section {
+        padding: 60px 20px 40px 20px;
+        min-height: auto;
+    }
+
+    .about-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .about-content {
+        width: 100%;
+    }
+
+    .about-title {
+        font-family: 'Anton', sans-serif;
+        font-size: 3rem;
+        letter-spacing: 2px;
+        color: #BBE0FF;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .about-subtitle {
+        font-family: 'Anton', sans-serif;
+        font-size: 2.2rem;
+        line-height: 1.2;
+        color: #ffffff;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .about-subtitle span {
+        font-size: 1.2rem;
+        display: block;
+        margin-top: 5px;
+    }
+
+    .about-text {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        text-align: justify;
+    }
+
+    .about-image {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .about-image img {
+        max-width: 300px;
+        height: auto;
+        border-radius: 4px;
+    }
+
+    /* --- 2. PENGALAMAN (HP) --- */
+    .experience-section {
+        padding: 60px 20px 40px 20px;
+        min-height: auto;
+    }
+
+    .experience-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .experience-media {
+        display: contents;
+    }
+
+    .experience-title {
+        order: 1;
+        font-family: 'Anton', sans-serif;
+        font-size: 3.2rem;
+        letter-spacing: 2px;
+        color: #BBE0FF;
+        text-align: center;
+        margin-bottom: 15px;
+        width: 100%;
+    }
+
+    .experience-cards {
+        order: 2;
+        width: 100%;
+        gap: 18px;
+    }
+
+    .exp-card {
+        border: 1px solid #ffffff;
+        border-radius: 22px;
+        padding: 20px;
+        background: transparent;
+    }
+
+    .exp-institution {
+        font-size: 0.9rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .exp-list {
+        margin-left: 15px;
+        font-size: 0.8rem;
+        line-height: 1.5;
+    }
+
+    .exp-image-wrapper {
+        order: 3;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .exp-image-wrapper img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
+
+    /* --- 3. KETERAMPILAN (HP) --- */
+    .skills-section {
+        padding: 60px 20px 40px 20px;
+        min-height: auto;
+    }
+
+    .skills-container {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .skills-content {
+        order: 1;
+        width: 100%;
+    }
+
+    .skills-title {
+        font-family: 'Anton', sans-serif;
+        font-size: 3.2rem;
+        letter-spacing: 2px;
+        color: #BBE0FF;
+        text-align: center;
+        margin-bottom: 25px;
+    }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .skill-pill {
+        border: 1px solid #ffffff;
+        border-radius: 25px;
+        padding: 14px 10px;
+        text-align: center;
+        font-size: 0.78rem;
+        background: transparent;
+    }
+
+    .skills-images {
+        order: 2;
+        width: 100%;
+        gap: 15px;
+    }
+
+    .skill-img-box img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+    }
+
+    /* --- 4. CONTACT / TERIMA KASIH (HP) --- */
     .contact-section {
         height: auto;
         min-height: 100vh;
@@ -1117,7 +1350,6 @@ body {
         gap: 20px;
     }
 
-    /* 2. Lingkaran latar disesuaikan ukurannya di HP */
     .bg-circle {
         width: 260px;
         height: 260px;
@@ -1126,7 +1358,6 @@ body {
         left: 50%;
     }
 
-    /* 3. Judul & Teks Penjelas di HP */
     .contact-left {
         max-width: 100%;
         align-items: center;
@@ -1147,10 +1378,9 @@ body {
         padding: 0 5px;
     }
 
-    /* 4. Card Kontak Merah */
     .contact-card {
         width: 100%;
-        border-radius: 40px; /* Keempat sudut tumpul proporsional di HP */
+        border-radius: 40px;
         padding: 22px 20px;
         box-sizing: border-box;
     }
@@ -1176,7 +1406,6 @@ body {
         gap: 14px;
     }
 
-    /* 5. PERBAIKAN FOTO ZIDNEY DI HP */
     .contact-right {
         width: 100%;
         display: flex;
@@ -1193,15 +1422,4 @@ body {
         max-height: none;
         margin: 0 auto;
     }
-}
-
-/* Proteksi agar gambar tidak bisa di-select/di-drag keluar */
-img {
-    -webkit-user-drag: none;
-    -khtml-user-drag: none;
-    -moz-user-drag: none;
-    -o-user-drag: none;
-    user-drag: none;
-    user-select: none;
-    -webkit-user-select: none;
 }
